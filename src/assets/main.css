@@ -1,7 +1,16 @@
-
 /* @import './base.css'; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+body {
+  min-height: 100vh;
+  background: rgb(227, 228, 227);
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-family: Inter, Roboto;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

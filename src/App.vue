@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import signin from "./views/signin.vue"
+import { RouterView } from "vue-router";
 </script>
 
-
-
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <signin />
-    
-  </div>
+  <RouterView />
 </template>
 
 <style scoped>
