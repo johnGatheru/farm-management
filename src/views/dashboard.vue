@@ -33,7 +33,7 @@ const beansUrl =
           title="Maize"
           para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
         />
-        <Summary />
+
         <Card
           @send="goSomeWhere()"
           :url="image2"
