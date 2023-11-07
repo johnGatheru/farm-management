@@ -20,7 +20,7 @@ const beansUrl =
 <template>
   <div class="px-6 gap-4 flex justify-center items-center h-screen">
     <div class="flex flex-col">
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-4 gap-4">
         <Card
           :url="image1"
           title="Beans"
@@ -33,14 +33,18 @@ const beansUrl =
           para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
         />
         <!-- <Summary /> -->
-        <!-- <Card
-        title="Beans"
-        para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
-      />
-      <Card
-        title="Beans"
-        para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
-      />  -->
+        <Card
+          @send="goSomeWhere()"
+          :url="image2"
+          title="Maize"
+          para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
+        />
+        <Card
+          @send="goSomeWhere()"
+          :url="image2"
+          title="Maize"
+          para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
+        />
       </div>
       <div
         class="mt-6 flex gap-3 items-center hover:cursor-pointer w-fit"
