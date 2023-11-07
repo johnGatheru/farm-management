@@ -26,6 +26,7 @@ const beansUrl =
           title="Beans"
           para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
         />
+        <!-- we are testing git  -->
         <Card
           @send="goSomeWhere()"
           :url="image2"
