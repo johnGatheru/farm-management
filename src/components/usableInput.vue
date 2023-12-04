@@ -7,7 +7,7 @@ defineProps<{
 </script>
 <template>
   <div class="flex flex-col justify-center">
-    <label for="" class="text-xs font-bold mb-2">{{ label }}</label>
+    <label for="" class="text-xs font-bold mb-[2px]">{{ label }}</label>
     <input
       :type="type"
       :placeholder="placeholder"

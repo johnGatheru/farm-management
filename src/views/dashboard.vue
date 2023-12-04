@@ -2,11 +2,14 @@
 import Card from "@/components/Card.vue";
 import image1 from "@/assets/beans2.jpeg";
 import image2 from "@/assets/maize.jpeg";
+import peas from "@/assets/peas.jpg";
+import waru from "@/assets/mawaru.jpeg";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-function goSomeWhere() {
+function goSomeWhere(item: any) {
+  localStorage.setItem("crop", item);
   router.push("summary");
 }
 function goToLogin() {
@@ -22,28 +25,29 @@ const beansUrl =
     <div class="flex flex-col">
       <div class="grid grid-cols-4 gap-4">
         <Card
+          @send="goSomeWhere('Beans')"
           :url="image1"
           title="Beans"
           para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
         />
         <!-- we are testing git  -->
         <Card
-          @send="goSomeWhere()"
+          @send="goSomeWhere('Maize')"
           :url="image2"
           title="Maize"
           para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
         />
 
         <Card
-          @send="goSomeWhere()"
-          :url="image2"
-          title="Maize"
+          @send="goSomeWhere('Potatoes')"
+          :url="waru"
+          title="Potatoes"
           para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
         />
         <Card
-          @send="goSomeWhere()"
-          :url="image2"
-          title="Maize"
+          @send="goSomeWhere('Peas')"
+          :url="peas"
+          title="Peas"
           para="This i the summary of beans plantation in this egro fields. Here are all what yoou need to know on the mattters concerning the field and the beans production "
         />
       </div>

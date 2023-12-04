@@ -3,102 +3,36 @@ import router from "@/router";
 import { ref } from "vue";
 const showAddInput = ref(false);
 import { RouterLink, RouterView } from "vue-router";
-import innerModal from "@/components/InnerModal.vue";
-import UsableInput from "@/components/usableInput.vue";
 
 function goToDashboard() {
   router.push("/dashboard");
 }
+let thePro = localStorage.getItem("crop");
 </script>
 
 <template>
   <div class="bg-slate-100 h-screen">
-    <Teleport to="body">
-      <inner-modal v-if="showAddInput" @closeModal="showAddInput = false">
-        <div class="bg-white rounded-md p-3 h-full">
-          <div class="flex justify-between mt-[-1em] mr-[-.5em]">
-            <div class=""></div>
-            <div
-              class="text-xl font-bold text-red-700 hover:cursor-pointer p-2"
-              @click="showAddInput = false"
-            >
-              X
-            </div>
-          </div>
-
-          <div class="">
-            <UsableInput
-              label="Email"
-              type="text"
-              placeholder="jony@gmail.com"
-            />
-          </div>
-          <div class="">
-            <UsableInput
-              label="Email"
-              type="text"
-              placeholder="jony@gmail.com"
-            />
-          </div>
-          <div class="">
-            <UsableInput
-              label="Email"
-              type="text"
-              placeholder="jony@gmail.com"
-            />
-          </div>
-          <div class="">
-            <UsableInput
-              label="Email"
-              type="text"
-              placeholder="jony@gmail.com"
-            />
-          </div>
-          <div class="">
-            <UsableInput
-              label="Email"
-              type="text"
-              placeholder="jony@gmail.com"
-            />
-          </div>
-          <div class="">
-            <UsableInput
-              label="Email"
-              type="text"
-              placeholder="jony@gmail.com"
-            />
-          </div>
-        </div>
-      </inner-modal>
-    </Teleport>
-    <header>
+    <header class="head">
       <div
-        class="wrapper w-full bg-gray-200 shadow-md mb-4 pl-[6%] pt-4 pb-2 items-start flex flex-col"
+        class="wrapper w-full shadow-xl mb-4 pl-[6%] pt-4 pb-2 items-start flex flex-col"
       >
         <div
           class="flex gap-3 items-center w-fit hover:cursor-pointer"
           @click="goToDashboard()"
         >
           <img src="@/assets/back.png" alt="" width="30" />
-          <h2 class="text-orange-600 font-bold">Back To dashboard</h2>
+          <h2 class="text-white text-lg font-bold">Back To dashboard</h2>
         </div>
         <div class="flex justify-between w-[50%]">
           <nav class="flex gap-4 font-bold mt-2">
             <RouterLink to="/summary/inputs">All Inputs</RouterLink>
             <RouterLink to="/summary/products">Products</RouterLink>
           </nav>
-          <div class="flex gap-4">
-            <button
-              class="bg-green-700 text-white font-bold rounded-md px-4 h-8"
-              @click="showAddInput = true"
+          <div class="text-white font-bold">
+            <span class="text-xl">You have selected</span>
+            <span class="text-white ml-2 text-4xl bg-green-400 rounded-md px-2">
+              {{ thePro }}</span
             >
-              Add Input
-            </button>
-            <button
-              class="bg-green-700 text-white font-bold rounded-md px-4 h-8"
-            >
-              Add Product
-            </button>
           </div>
         </div>
       </div>
@@ -111,18 +45,25 @@ function goToDashboard() {
 header {
   line-height: 1.5;
   max-height: 100vh;
+  background-image: url("../assets/farming1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.wrapper {
+  background-color: rgba(239, 244, 240, 0.5);
+  width: 100%;
+  height: 100%;
 }
 
 nav {
   font-size: 12px;
-  /* text-align: center; */
-  /* margin-top: 2rem; */
 }
 
 nav a.router-link-exact-active {
-  color: white;
+  color: green;
   text-decoration: underline;
-  background-color: green;
+  background-color: white;
   border-radius: 3px;
 }
 
