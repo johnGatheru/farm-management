@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, type Ref } from "vue";
+import { computed, onMounted, ref, type Ref } from "vue";
 import innerModal from "@/components/InnerModal.vue";
 const name = ref();
 const quantity = ref();
@@ -62,13 +62,16 @@ function getSales() {
     .then((json) => (allsales.value = filterProductsByType(json)));
 }
 function deleteSale(id: string) {
-  fetch(`https://crop-management-be-production.up.railway.app/messages/${id}`, {
-    // Adding method type
-    method: "DELETE",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
+  fetch(
+    `https://crop-management-be-production.up.railway.app/messages?id=${id}`,
+    {
+      // Adding method type
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+  )
     // Converting to JSON
     .then((response) => {
       if (response) {
@@ -76,6 +79,16 @@ function deleteSale(id: string) {
       }
     });
 }
+function getTotal() {
+  let total = 0;
+  allsales.value.forEach((element: any) => {
+    total += Number(element.quantity) * Number(element.sellPrice);
+  });
+  return total;
+}
+const totals = computed(() => {
+  return getTotal();
+});
 onMounted(() => {
   getSales();
 });
@@ -207,6 +220,12 @@ const showAddInput = ref(false);
         </tr>
       </tbody>
     </table>
+    <div
+      class="bg-green-700 text-white font-bold px-4 w-[56%] mt-4 flex justify-between"
+    >
+      <span>The Grand Totals</span>
+      <span class="font-bold">=/{{ totals }}</span>
+    </div>
   </div>
 </template>
 <style scoped>

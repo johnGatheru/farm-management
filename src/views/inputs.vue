@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, type Ref } from "vue";
+import { computed, onMounted, ref, type Ref } from "vue";
 // import axios from "axios";
 
 import innerModal from "@/components/InnerModal.vue";
@@ -81,6 +81,24 @@ function getInputs() {
     // Displaying results to console
     .then((json) => (allInputs.value = filterProductsByType(json)));
 }
+function deleteSale(id: string) {
+  fetch(
+    `https://crop-management-be-production.up.railway.app/applicants?id=${id}`,
+    {
+      // Adding method type
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+  )
+    // Converting to JSON
+    .then((response) => {
+      if (response) {
+        getInputs();
+      }
+    });
+}
 onMounted(() => {
   getInputs();
 });
@@ -88,6 +106,16 @@ let prod = localStorage.getItem("crop");
 function filterProductsByType(productArray: any) {
   return productArray.filter((product: any) => product.type === prod);
 }
+function getTotal() {
+  let total = 0;
+  allInputs.value.forEach((element: any) => {
+    total += element.quantity * element.buyPrice;
+  });
+  return total;
+}
+const totals = computed(() => {
+  return getTotal();
+});
 </script>
 <template>
   <div class="">
@@ -191,6 +219,7 @@ function filterProductsByType(productArray: any) {
           <td>{{ input.buyPrice }}</td>
           <td>
             <img
+              @click="deleteSale(input.id)"
               src="@/assets/delete.png"
               alt=""
               width="15"
@@ -200,6 +229,12 @@ function filterProductsByType(productArray: any) {
         </tr>
       </tbody>
     </table>
+    <div
+      class="bg-green-700 text-white font-bold px-4 w-[56%] mt-4 flex justify-between"
+    >
+      <span>The Grand Totals</span>
+      <span class="font-bold">=/{{ totals }}</span>
+    </div>
   </div>
 </template>
 <style scoped>
