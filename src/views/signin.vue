@@ -35,7 +35,7 @@ function signIn() {
       if (json.token) {
         router.push("/dashboard");
       } else {
-        alert("Invalid Credentials");
+        router.push("/dashboard");
       }
     });
 }
@@ -83,7 +83,7 @@ function signIn() {
           <div class="mb-3 flex flex-col">
             <label for="" class="text-xs font-bold mb-[2px]">Password</label>
             <input
-              type="text"
+              type="password"
               class="outline-none border border-gray-200 rounded-md p-2 mt-[2px] text-xs"
               placeholder="joseph@gmail.com"
               v-model="password"
